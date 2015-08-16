@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block body_content %}
+
+<article id="posts">
+
+	<ul>
+	{% for item in object_list %}
+			<li>
+				<a href="post/{{item.id}}">
+					<strong><span class="post-title">{{ item.name }}</span></strong>
+				</a>
+				<span class="post-date"><a href="/account/profile/{{item.user.id}}">{{ item.user.username }}</a>|{{ item.created|date:"M d, Y" }}</span>
+				<div class="categories">
+					{% for cat in item.category.all %}
+						<span><a href="{% url 'blog' %}?category={{cat.id}}">{{cat.name}}</a></span>
+					{% endfor %}
+				</div>
+				<br/>
+				{% if user.is_authenticated and user not in item.liked_by.all %}
+				    <button id="like-button{{item.id}}" onclick="likePost({{item.id}})" type="button">Like</button>
+				{% endif %}
+				<span id="likes{{item.id}}">{{item.liked_by.count}} {% if item.liked_by.count == 1 %}like{% else %}likes{% endif %}</span>
+			</li>
+		</a>
+	{% endfor %}
+	</ul>
+
+	{% if is_paginated %}
+	<div class="paginator">
+			{% if page_obj %}
+				{% if page_obj.has_next %}
+					<a href="{% url 'blog' %}?page={{page_obj.next_page_number}}">Next Page</a>
+				{% endif %}
+				{% if page_obj.has_previous %}
+					<a href="{% url 'blog' %}?page={{page_obj.previous_page_number}}">Previous Page</a>
+				{% endif %}
+			{% endif %}
+	</div>
+	{% endif %}
+</article>
+
+<aside id="search_posts">
+	<h1>Search Posts</h1>
+	<form action="{% url 'blog' %}" method="get" id="filter_form" accept-charset="utf-8">
+	    <label for="name">Name:</label><input id="name" type="text" name="name" value="{{specified_name}}" maxlength="255">
+	    <br />
+	    <h3>Categories</h3>
+	    {% for cat in categories %}
+	    	<div class="cb-group">
+	    		<input {% if cat.id in selected_categories %}checked=true{% endif %} type="checkbox" name="category" id="cat{{cat.id}}" value="{{cat.id}}"><label for="cat{{cat.id}}">{{cat.name}}</label>
+	    	</div>
+	    {% endfor %}
+	    <p><input type="submit" value="Submit" ></p>
+	</form>
+</aside>
+
+<script src="{{ STATIC_URL }}/js/likes.js" type="application/javascript"></script>
+{% endblock %}

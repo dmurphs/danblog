@@ -1,0 +1,16 @@
+Django
+argparse
+django-redis
+redis
+dj-database-url
+django-braces
+django-vanilla-views
+django-wysiwyg-redactor
+pillow
+psycopg2
+requests
+six
+sqlparse
+wsgiref
+sorl-thumbnail==11.12.1b
+django-filter

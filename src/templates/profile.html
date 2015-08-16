@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block body_content %}
+
+<article id="user-detail">
+	<h1>{{blog_user.first_name}} {{blog_user.last_name}}</h1>
+
+	<div class="image-section">
+		<p>Username: {{base_user.username}}</p>
+
+		{% if blog_user.image %}
+		<img src="{{ MEDIA_URL }}{{blog_user.image}}" alt="{{base_user.username}} image">
+		{% endif %}
+	</div>
+
+	<div class="summary">
+		{% if blog_user.summary %}
+		<p>{{ blog_user.summary }}</p>
+		{% endif %}
+	</div>
+
+	<div class="user-links">
+		{% if blog_user.website %}
+		<p>Website: <a href="{{ blog_user.website }}">{{ blog_user.website }}</a></p>
+		{% endif %}
+
+		<a href="/blog/?user={{base_user.id}}">{{ base_user.username }}'s Posts</a>
+	</div>
+</article>
+
+{% endblock %}

@@ -1,0 +1,219 @@
+@import "modules/reset";
+@import "modules/bourbon/bourbon";
+@import "modules/neat/neat";
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:400,700);
+@import url(http://fonts.googleapis.com/css?family=Armata);
+@import url(http://fonts.googleapis.com/css?family=Merriweather);
+
+$primary-color: #707655;
+$secondary-color: white;
+$container-width: 1200px;
+
+$menu-font: 'Ubuntu', sans-serif;
+$heading-font: 'Armata', sans-serif;
+$reading-font: 'Merriweather', serif;
+
+html{
+	font-family: $reading-font;
+}
+
+h1,h2,h3,h4{
+	font-family: $heading-font !important;
+}
+
+@mixin center-margin{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@mixin fade-in($start-color, $end-color){
+	-webkit-animation: myfirst 0.7s; /* Chrome, Safari, Opera */
+    animation: myfirst 0.7s;
+
+	/* Chrome, Safari, Opera */
+	@-webkit-keyframes myfirst {
+	    from {color: $start-color;}
+	    to {color: $end-color;}
+	}
+
+	/* Standard syntax */
+	@keyframes myfirst {
+	    from {color: $start-color;}
+	    to {color: $end-color;}
+	}
+	color: $end-color;
+}
+
+header{
+
+	background: $primary-color;
+
+	.header-links{
+		list-style-type: none;
+		@include row;
+
+		a{
+			text-decoration: none;
+			color: white;
+			font-family: $menu-font;
+			font-weight: bold;
+
+			.active{
+				background: $secondary-color;
+				color: $primary-color;
+			}
+
+			li{
+
+				padding-top: 20px;
+				padding-bottom: 20px;
+				display: inline-block;
+
+				border: solid 1px $primary-color;
+				width: 60px;
+
+				text-align: center;
+
+				&:hover{
+					color: $primary-color;
+					background: $secondary-color;
+				}
+			}
+		}
+	}
+}
+
+#posts{
+	@include span-columns(8);
+
+	ul{
+		list-style-type: none;
+
+		li{
+			.post-date{
+				float:right;
+			}
+
+			.post-title{
+				float: left;
+				text-transform: uppercase;
+			}
+
+			.categories{
+				padding-top: 5px;
+				clear: both;
+				span:after{
+					content: " |";
+				}
+				span:last-child:after{
+					content: "";
+				}
+			}
+
+			padding: 25px;
+			margin: 15px;
+
+			border: solid 1px $primary-color;
+
+			&:hover{
+				@include fade-in(black, $primary-color);
+			}
+		}
+	}
+
+	.paginator{
+		@include span-columns(12);
+		text-align: center;
+	}
+}
+
+#search_posts{
+	@include span-columns(4);
+	padding-left: 15px;
+	border: solid 1px $primary-color;
+	margin-right: 0 !important;
+
+	.cb-group{
+		margin-left: 10px;
+	}
+}
+
+.container{
+	max-width: $container-width;
+	@include center-margin;
+	margin-bottom: 50px;
+}
+
+
+//homepage
+
+nav{
+	text-align: center;
+}
+
+#about-me{
+	.blog-link{
+		margin-top: 30px;
+		a{
+			padding: 10px;
+			background: #707655;
+			border: solid 1px #707655;
+			text-transform: uppercase;
+			color: white;
+			text-decoration: none;
+			&:hover{
+				background: white;
+				color: #707655;
+			}
+		}
+	}
+
+	h1{
+		text-transform: uppercase;
+		color: #373B44;
+		white-space: nowrap;
+	}
+
+	.point{
+		@include span-columns(4);
+		border-radius: 5px;
+		padding: 5px;
+	}
+
+	.main-points{
+		@include span-columns(12);
+	}
+
+	text-align: center;
+}
+
+.hero{
+	width: 100%;
+	height: 350px;
+	overflow: hidden;
+}
+
+#user-detail{
+	.image-section{
+		@include span-columns(4);
+		img{
+			@include span-columns(6);
+			max-width: 100%;
+		}
+	}
+
+	.summary{
+		@include span-columns(7);
+	}
+
+	.user-links{
+		@include span-columns(12);
+	}
+}
+
+#new-post{
+	p{
+		float: left;
+		width: 100%;
+	}
+}

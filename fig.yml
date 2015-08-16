@@ -1,0 +1,31 @@
+data:
+  image: busybox
+  volumes:
+    - /var/lib/postgresql/data
+media:
+  image: busybox
+  volumes:
+    - /home/docker/code/src/media
+db:
+  image: postgres
+  volumes:
+    - ~/backup:/backup
+  volumes_from:
+    - data
+redis:
+  image: redis
+  command: "redis-server --appendonly yes"
+web:
+  build: .
+  ports:
+    - "80:80"
+  command: "supervisord -n"
+  working_dir: /home/docker/code/src
+  volumes:
+    - ~/backup:/backup
+    - src/:/home/docker/code/src
+  volumes_from:
+    - media
+  links:
+    - db
+    - redis
