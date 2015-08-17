@@ -543,4 +543,9 @@ nav {
   float: left;
   width: 100%; }
 
+.date-list ul {
+  display: none; }
+.date-list span {
+  cursor: pointer; }
+
 /*# sourceMappingURL=styles.css.map */

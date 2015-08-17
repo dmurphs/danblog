@@ -53,6 +53,30 @@
 	    {% endfor %}
 	    <p><input type="submit" value="Submit" ></p>
 	</form>
+	<!--
+	<h3>Find By Date</h3>
+	<ul class="date-list">
+		{% for year, months in grouped_dates.items %}
+		<li>
+			<span onclick="$('#y{{year}}').toggle()">{{year}}</span>
+			<ul id="y{{year}}">
+				{% for month,dates in months.items %}
+				<li>
+					<span onclick="$('#y{{year}}m{{month}}').toggle()">{{month}}</span>
+					<ul id="y{{year}}m{{month}}">
+						{% for date in dates %}
+						<li>
+							<a href="{% url 'blog' %}?created={{date|date:"Y-m-d"}}">{{date}}</a>
+						</li>
+						{% endfor %}
+					</ul>
+				</li>
+				{% endfor %}
+			</ul>
+		</li>
+		{% endfor %}
+	</ul>
+	-->
 </aside>
 
 <script src="{{ STATIC_URL }}/js/likes.js" type="application/javascript"></script>

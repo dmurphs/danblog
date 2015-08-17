@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Post, PostCategory
 from .filters import PostFilter
 from django.http import HttpResponse
+from itertools import groupby
 
 class AllPostsView(ListView):
     template_name = 'posts.html'
@@ -15,9 +16,14 @@ class AllPostsView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(AllPostsView, self).get_context_data(**kwargs)
+        
         context['categories'] = PostCategory.objects.all()
         context['selected_categories'] = map(int, self.request.GET.getlist('category')) if 'category' in self.request.GET else []
         context['specified_name'] = self.request.GET['name'] if 'name' in self.request.GET else ''
+
+        #all_dates = set([p.created.date() for p in Post.objects.all()])
+        #context['grouped_dates'] = {year: {month: list(days) for month,days in groupby(list(dates), lambda x: x.month)} for year,dates in groupby(all_dates, lambda x: x.year)}
+
         return context
 
 class PostDetail(DetailView):
