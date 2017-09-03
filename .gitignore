@@ -65,7 +65,7 @@ coverage.xml
 *.log
 *.pot
 # and uploads directory
-media/*
+src/media/*
 
 # Sphinx documentation
 docs/_build/

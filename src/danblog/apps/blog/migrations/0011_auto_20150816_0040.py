@@ -8,7 +8,7 @@ import redactor.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0010_auto_20150815_2230'),
+        ('blog', '0006_auto_20150416_0556'),
     ]
 
     operations = [
