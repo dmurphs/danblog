@@ -65,11 +65,6 @@ TEMPLATE_DIRS = (
 )
 # End Templates
 
-# Secret key
-SECRET_KEY = u"ga=sq!5ysyq8#3)-ait(0q%c1*-0xhuk=1c!+q_te+=b(m-21*"
-# End secret key
-
-
 # Application
 DJANGO_APPS = (
     'django.contrib.admin',
@@ -78,7 +73,7 @@ DJANGO_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'sorl.thumbnail',
+
     'redactor',
     'blog',
     'account',
@@ -97,6 +92,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME

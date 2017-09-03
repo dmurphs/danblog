@@ -23,3 +23,7 @@ INTERNAL_IPS = ('127.0.0.1', 'localhost')
 DATABASES = {'default': dj_database_url.config(
     default='postgres:///danblog')}
 # End Database
+
+# Secret key
+SECRET_KEY = u"ga=sq!5ysyq8#3)-ait(0q%c1*-0xhuk=1c!+q_te+=b(m-21*"
+# End secret key

@@ -14,5 +14,7 @@ urlpatterns = patterns('',
 
 # static files serving in development
 if s.DEBUG:
-    urlpatterns += static(s.MEDIA_URL,
-                          document_root=s.MEDIA_ROOT)
+    import debug_toolbar
+    urlpatterns = [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns

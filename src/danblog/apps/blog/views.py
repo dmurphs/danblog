@@ -10,9 +10,9 @@ class AllPostsView(ListView):
     model = Post
     paginate_by = 10
 
-    def get_queryset(self):
-    	post_filter = PostFilter(self.request.GET, Post.objects.all().order_by('-created'))
-    	return post_filter
+    # def get_queryset(self):
+    # 	post_filter = PostFilter(self.request.GET, Post.objects.all().order_by('-created'))
+    # 	return post_filter
 
     def get_context_data(self, **kwargs):
         context = super(AllPostsView, self).get_context_data(**kwargs)
