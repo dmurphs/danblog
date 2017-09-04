@@ -21,8 +21,6 @@ class AllPostsView(ListView):
 
         context['filter'] = f
 
-        print(f.qs)
-
         return context
 
 class PostDetail(DetailView):
