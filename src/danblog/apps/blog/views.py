@@ -10,19 +10,18 @@ class AllPostsView(ListView):
     model = Post
     paginate_by = 10
 
-    def get_queryset(self):
-    	post_filter = PostFilter(self.request.GET, Post.objects.all().order_by('-created'))
-    	return post_filter.queryset
-
     def get_context_data(self, **kwargs):
         context = super(AllPostsView, self).get_context_data(**kwargs)
         
-        context['categories'] = PostCategory.objects.all()
-        context['selected_categories'] = map(int, self.request.GET.getlist('category')) if 'category' in self.request.GET else []
-        context['specified_name'] = self.request.GET['name'] if 'name' in self.request.GET else ''
+        # context['categories'] = PostCategory.objects.all()
+        # context['selected_categories'] = map(int, self.request.GET.getlist('category')) if 'category' in self.request.GET else []
+        # context['specified_name'] = self.request.GET['name'] if 'name' in self.request.GET else ''
 
-        #all_dates = set([p.created.date() for p in Post.objects.all()])
-        #context['grouped_dates'] = {year: {month: list(days) for month,days in groupby(list(dates), lambda x: x.month)} for year,dates in groupby(all_dates, lambda x: x.year)}
+        f = PostFilter(self.request.GET, queryset=Post.objects.all())
+
+        context['filter'] = f
+
+        print(f.qs)
 
         return context
 

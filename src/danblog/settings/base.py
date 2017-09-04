@@ -75,11 +75,12 @@ DJANGO_APPS = (
     'django.contrib.staticfiles',
 
     'redactor',
-    'blog',
-    'account',
+    'django_filters',
 )
 
 LOCAL_APPS = (
+    'blog',
+    'account',
 )
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS

@@ -5,7 +5,7 @@
 <article id="posts">
 
 	<ul>
-	{% for item in object_list %}
+	{% for item in filter.qs %}
 			<li>
 				<a href="post/{{item.id}}">
 					<strong><span class="post-title">{{ item.name }}</span></strong>
@@ -43,16 +43,9 @@
 <aside id="search_posts">
 	<h1>Search Posts</h1>
 	<form action="{% url 'blog' %}" method="get" id="filter_form" accept-charset="utf-8">
-	    <label for="name">Name:</label><input id="name" type="text" name="name" value="{{specified_name}}" maxlength="255">
-	    <br />
-	    <h3>Categories</h3>
-	    {% for cat in categories %}
-	    	<div class="cb-group">
-	    		<input {% if cat.id in selected_categories %}checked=true{% endif %} type="checkbox" name="category" id="cat{{cat.id}}" value="{{cat.id}}"><label for="cat{{cat.id}}">{{cat.name}}</label>
-	    	</div>
-	    {% endfor %}
-	    <p><input type="submit" value="Submit" ></p>
-	</form>
+        {{ filter.form.as_p }}
+        <input type="submit" />
+    </form>
 	<!--
 	<h3>Find By Date</h3>
 	<ul class="date-list">
