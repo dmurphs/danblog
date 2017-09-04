@@ -13,16 +13,11 @@
 	{% endblock %}
 </head>
 <body>
-	{% if request.path == '/' %}
-	<div class="hero">
-		<img src="{{ MEDIA_URL }}/sick.jpeg">
-	</div>
-	{% endif %}
 	<div class="container">
 		<header>
 			<ul class="header-links">
 				<a href="/"><li {% if request.path == '/' %}class="active"{% endif %}>Home</li></a>
-				<a href="{% url 'blog' %}"><li {% if request.path|slice:":6" == '/blog/' %}class="active"{% endif %}>Blog</li></a>
+				<a href="{% url 'blog' %}"><li {% if request.path == '/blog/' %}class="active"{% endif %}>Blog</li></a>
 			</ul>
 		</header>
 
